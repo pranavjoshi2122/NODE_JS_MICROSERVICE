@@ -1,0 +1,39 @@
+USER-SERVICE
+
+1. Create User
+    curl --location 'localhost:3000/user' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "firstName": "Test",
+        "lastName": "User",
+        "email": "testuser@yopmail.com",
+        "password":"TestUser
+    }'
+
+2. Login user 
+    curl --location 'http://localhost:3000/user/login' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "email":"test1@yopmail.com",
+        "password":"Test@123"
+    }'
+
+3. Get User
+    curl --location --request GET 'http://localhost:3000/user/getUser/8efd9e6e-cc2e-4639-84c2-16525e5b319f' \
+    --header 'Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHlvcG1haWwuY29tIiwiaWF0IjoxNzM1NzM0NjQxfQ.MwJ7dEr7wNEDdye7E4SlA0MTrAglPw58qMWUusBurUs' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHlvcG1haWwuY29tIiwiaWF0IjoxNzM1NzM0NjQxfQ.MwJ7dEr7wNEDdye7E4SlA0MTrAglPw58qMWUusBurUs' \
+    --data-raw '{
+        "email":"test1@yopmail.com",
+        "password":"Test@123"
+    }'
+
+4. Get All User
+    curl --location --request GET 'http://localhost:3000/user/getAllUser' \
+    --header 'Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHlvcG1haWwuY29tIiwiaWF0IjoxNzM1NzM0NjQxfQ.MwJ7dEr7wNEDdye7E4SlA0MTrAglPw58qMWUusBurUs' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHlvcG1haWwuY29tIiwiaWF0IjoxNzM1NzM0NjQxfQ.MwJ7dEr7wNEDdye7E4SlA0MTrAglPw58qMWUusBurUs' \
+    --data-raw '{
+        "email":"test1@yopmail.com",
+        "password":"Test@123"
+    }'
