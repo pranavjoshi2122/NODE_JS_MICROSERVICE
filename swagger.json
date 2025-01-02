@@ -1,0 +1,181 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "User-Service API",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the token with the `Bearer: ` prefix, e.g. Bearer abcde12345"
+        }
+    },
+    "paths": {
+        "/user/register": {
+            "post": {
+                "x-swagger-router-controller": "register",
+                "operationId": "registe",
+                "tags": [
+                    "user"
+                ],
+                "description": "register",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "string"
+                                },
+                                "lastName": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "firstName",
+                                "lastName",
+                                "email",
+                                "password"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/login": {
+            "post": {
+                "x-swagger-router-controller": "user",
+                "operationId": "login",
+                "tags": [
+                    "user"
+                ],
+                "description": "user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email",
+                                "password"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/getAllUser": {
+            "get": {
+                "x-swagger-router-controller": "user",
+                "operationId": "Users Data",
+                "security": [
+                    {
+                        "JWT": [
+                            {
+                                "type": "http",
+                                "scheme": "bearer",
+                                "bearerFormat": "JWT"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "properties": {
+                                "res": {
+                                    "type": "string",
+                                    "default": "1"
+                                },
+                                "msg": {
+                                    "type": "string",
+                                    "default": "Success"
+                                },
+                                "data": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "",
+                        "schema": {
+                            "properties": {
+                                "res": {
+                                    "type": "string",
+                                    "default": "0"
+                                },
+                                "msg": {
+                                    "type": "string",
+                                    "default": "Authentication error. Token required."
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    },
+                                    "default": null
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "schema": {
+                            "properties": {
+                                "res": {
+                                    "type": "string",
+                                    "default": "0"
+                                },
+                                "msg": {
+                                    "type": "string",
+                                    "default": "Something went wrong.Please try again later."
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    },
+                                    "default": null
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
